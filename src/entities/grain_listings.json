@@ -1,0 +1,99 @@
+
+{
+  "name": "grain_listings",
+  "options": {
+    "validator": {
+      "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["seller_id", "grain_type", "quantity", "price_per_kg", "quality_grade", "location", "contact_info", "status", "created_at"],
+        "properties": {
+          "seller_id": {
+            "bsonType": "string",
+            "description": "ID of the farmer/seller"
+          },
+          "grain_type": {
+            "bsonType": "string",
+            "enum": ["wheat", "rice", "corn", "barley", "bajra", "jowar", "ragi", "quinoa", "oats"],
+            "description": "Type of grain being sold"
+          },
+          "quantity": {
+            "bsonType": "number",
+            "minimum": 1,
+            "description": "Quantity available in kg"
+          },
+          "price_per_kg": {
+            "bsonType": "number",
+            "minimum": 0.1,
+            "description": "Price per kilogram in rupees"
+          },
+          "quality_grade": {
+            "bsonType": "string",
+            "enum": ["A+", "A", "B+", "B", "C"],
+            "description": "Quality grade of the grain"
+          },
+          "location": {
+            "bsonType": "object",
+            "required": ["state", "district", "village"],
+            "properties": {
+              "state": {"bsonType": "string"},
+              "district": {"bsonType": "string"},
+              "village": {"bsonType": "string"},
+              "pincode": {"bsonType": "string"}
+            }
+          },
+          "contact_info": {
+            "bsonType": "object",
+            "required": ["phone", "name"],
+            "properties": {
+              "name": {"bsonType": "string"},
+              "phone": {"bsonType": "string"},
+              "whatsapp": {"bsonType": "string"}
+            }
+          },
+          "harvest_date": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Date when grain was harvested"
+          },
+          "organic_certified": {
+            "bsonType": "bool",
+            "description": "Whether the grain is organic certified"
+          },
+          "moisture_content": {
+            "bsonType": "number",
+            "minimum": 0,
+            "maximum": 50,
+            "description": "Moisture content percentage"
+          },
+          "status": {
+            "bsonType": "string",
+            "enum": ["available", "sold", "reserved", "expired"],
+            "description": "Listing status"
+          },
+          "images": {
+            "bsonType": "array",
+            "items": {"bsonType": "string"},
+            "description": "Array of image URLs"
+          },
+          "description": {
+            "bsonType": "string",
+            "description": "Additional details about the grain"
+          },
+          "created_at": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Listing creation time"
+          },
+          "updated_at": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Last update time"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "validationLevel": "moderate",
+    "validationAction": "warn"
+  }
+}

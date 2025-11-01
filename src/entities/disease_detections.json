@@ -1,0 +1,74 @@
+
+{
+  "name": "disease_detections",
+  "options": {
+    "validator": {
+      "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["cropType", "diseaseName", "confidence", "createdAt"],
+        "properties": {
+          "cropType": {
+            "bsonType": "string",
+            "description": "Type of crop analyzed"
+          },
+          "diseaseName": {
+            "bsonType": "string",
+            "description": "Identified disease name"
+          },
+          "confidence": {
+            "bsonType": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "AI confidence percentage"
+          },
+          "symptoms": {
+            "bsonType": "array",
+            "description": "List of observed symptoms"
+          },
+          "treatment": {
+            "bsonType": "string",
+            "description": "Recommended treatment"
+          },
+          "prevention": {
+            "bsonType": "string",
+            "description": "Prevention measures"
+          },
+          "severity": {
+            "bsonType": "string",
+            "enum": ["low", "medium", "high", "critical"],
+            "description": "Disease severity level"
+          },
+          "imageUrl": {
+            "bsonType": "string",
+            "description": "Uploaded image URL"
+          },
+          "userId": {
+            "bsonType": "string",
+            "description": "User who uploaded the image"
+          },
+          "location": {
+            "bsonType": "object",
+            "description": "Geographic location data"
+          },
+          "creator": {
+            "bsonType": "string",
+            "description": "Creator of the record"
+          },
+          "createdAt": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Analysis timestamp"
+          },
+          "updatedAt": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Last update timestamp"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "validationLevel": "moderate",
+    "validationAction": "warn"
+  }
+}

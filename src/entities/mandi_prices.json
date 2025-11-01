@@ -1,0 +1,91 @@
+
+{
+  "name": "mandi_prices",
+  "options": {
+    "validator": {
+      "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["cropName", "marketName", "pricePerKg", "pricePerQuintal", "date"],
+        "properties": {
+          "cropName": {
+            "bsonType": "string",
+            "description": "Name of the crop"
+          },
+          "hindiName": {
+            "bsonType": "string",
+            "description": "Hindi name of crop"
+          },
+          "marketName": {
+            "bsonType": "string",
+            "description": "Name of the mandi/market"
+          },
+          "state": {
+            "bsonType": "string",
+            "description": "State where market is located"
+          },
+          "district": {
+            "bsonType": "string",
+            "description": "District of the market"
+          },
+          "pricePerKg": {
+            "bsonType": "number",
+            "minimum": 0,
+            "description": "Price per kilogram in INR"
+          },
+          "pricePerQuintal": {
+            "bsonType": "number",
+            "minimum": 0,
+            "description": "Price per quintal in INR"
+          },
+          "minPrice": {
+            "bsonType": "number",
+            "minimum": 0,
+            "description": "Minimum price in market"
+          },
+          "maxPrice": {
+            "bsonType": "number",
+            "minimum": 0,
+            "description": "Maximum price in market"
+          },
+          "avgPrice": {
+            "bsonType": "number",
+            "minimum": 0,
+            "description": "Average price in market"
+          },
+          "quality": {
+            "bsonType": "string",
+            "enum": ["poor", "average", "good", "excellent"],
+            "description": "Quality of crop"
+          },
+          "date": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Price date"
+          },
+          "trend": {
+            "bsonType": "string",
+            "enum": ["rising", "falling", "stable"],
+            "description": "Price trend"
+          },
+          "creator": {
+            "bsonType": "string",
+            "description": "Creator of the record"
+          },
+          "createdAt": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Record creation timestamp"
+          },
+          "updatedAt": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Last update timestamp"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "validationLevel": "moderate",
+    "validationAction": "warn"
+  }
+}

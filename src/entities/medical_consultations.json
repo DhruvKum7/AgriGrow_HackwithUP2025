@@ -1,0 +1,88 @@
+
+{
+  "name": "medical_consultations",
+  "options": {
+    "validator": {
+      "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["user_id", "query_text", "query_language", "consultation_type", "created_at"],
+        "properties": {
+          "user_id": {
+            "bsonType": "string",
+            "description": "ID of the farmer asking the question"
+          },
+          "query_text": {
+            "bsonType": "string",
+            "description": "Original farmer query in their language"
+          },
+          "query_language": {
+            "bsonType": "string",
+            "enum": ["hi", "en"],
+            "description": "Language of the query"
+          },
+          "consultation_type": {
+            "bsonType": "string",
+            "enum": ["disease_treatment", "pesticide_advice", "fertilizer_guidance", "general_agriculture"],
+            "description": "Type of medical consultation"
+          },
+          "crop_type": {
+            "bsonType": "string",
+            "description": "Type of crop affected"
+          },
+          "disease_identified": {
+            "bsonType": "string",
+            "description": "Disease or problem identified"
+          },
+          "ai_response": {
+            "bsonType": "string",
+            "description": "AI-generated medical response"
+          },
+          "recommended_treatments": {
+            "bsonType": "array",
+            "items": {
+              "bsonType": "object",
+              "properties": {
+                "treatment_name": {"bsonType": "string"},
+                "dosage": {"bsonType": "string"},
+                "application_method": {"bsonType": "string"},
+                "frequency": {"bsonType": "string"},
+                "precautions": {"bsonType": "string"}
+              }
+            }
+          },
+          "voice_query": {
+            "bsonType": "bool",
+            "description": "Whether query was made via voice"
+          },
+          "voice_response_generated": {
+            "bsonType": "bool",
+            "description": "Whether voice response was generated"
+          },
+          "confidence_score": {
+            "bsonType": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "AI confidence in the diagnosis"
+          },
+          "follow_up_needed": {
+            "bsonType": "bool",
+            "description": "Whether follow-up consultation is needed"
+          },
+          "created_at": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Consultation creation time"
+          },
+          "updated_at": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Last update time"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "validationLevel": "moderate",
+    "validationAction": "warn"
+  }
+}

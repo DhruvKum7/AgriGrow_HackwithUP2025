@@ -1,0 +1,89 @@
+
+{
+  "name": "grain_orders",
+  "options": {
+    "validator": {
+      "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["buyer_id", "listing_id", "quantity_ordered", "agreed_price", "order_status", "created_at"],
+        "properties": {
+          "buyer_id": {
+            "bsonType": "string",
+            "description": "ID of the buyer"
+          },
+          "listing_id": {
+            "bsonType": "string",
+            "description": "ID of the grain listing"
+          },
+          "quantity_ordered": {
+            "bsonType": "number",
+            "minimum": 1,
+            "description": "Quantity ordered in kg"
+          },
+          "agreed_price": {
+            "bsonType": "number",
+            "minimum": 0.1,
+            "description": "Agreed price per kg"
+          },
+          "total_amount": {
+            "bsonType": "number",
+            "minimum": 0.1,
+            "description": "Total order amount"
+          },
+          "order_status": {
+            "bsonType": "string",
+            "enum": ["pending", "confirmed", "paid", "shipped", "delivered", "cancelled"],
+            "description": "Current order status"
+          },
+          "buyer_info": {
+            "bsonType": "object",
+            "required": ["name", "phone"],
+            "properties": {
+              "name": {"bsonType": "string"},
+              "phone": {"bsonType": "string"},
+              "company": {"bsonType": "string"},
+              "gst_number": {"bsonType": "string"}
+            }
+          },
+          "delivery_address": {
+            "bsonType": "object",
+            "required": ["state", "district", "address"],
+            "properties": {
+              "state": {"bsonType": "string"},
+              "district": {"bsonType": "string"},
+              "address": {"bsonType": "string"},
+              "pincode": {"bsonType": "string"}
+            }
+          },
+          "payment_terms": {
+            "bsonType": "string",
+            "enum": ["advance", "on_delivery", "30_days", "60_days"],
+            "description": "Payment terms agreed"
+          },
+          "delivery_date": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Expected delivery date"
+          },
+          "notes": {
+            "bsonType": "string",
+            "description": "Additional order notes"
+          },
+          "created_at": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Order creation time"
+          },
+          "updated_at": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Last update time"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "validationLevel": "moderate",
+    "validationAction": "warn"
+  }
+}

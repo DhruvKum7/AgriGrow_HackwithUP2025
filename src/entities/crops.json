@@ -1,0 +1,66 @@
+
+{
+  "name": "crops",
+  "options": {
+    "validator": {
+      "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["name", "category", "season", "createdAt"],
+        "properties": {
+          "name": {
+            "bsonType": "string",
+            "description": "Crop name (English and Hindi)"
+          },
+          "category": {
+            "bsonType": "string",
+            "enum": ["cereal", "pulse", "vegetable", "fruit", "spice", "cash_crop"],
+            "description": "Crop category"
+          },
+          "season": {
+            "bsonType": "string",
+            "enum": ["kharif", "rabi", "zaid", "perennial"],
+            "description": "Growing season"
+          },
+          "hindiName": {
+            "bsonType": "string",
+            "description": "Hindi name of crop"
+          },
+          "description": {
+            "bsonType": "string",
+            "description": "Crop description"
+          },
+          "growingConditions": {
+            "bsonType": "object",
+            "description": "Growing conditions and requirements"
+          },
+          "marketPrice": {
+            "bsonType": "number",
+            "minimum": 0,
+            "description": "Current market price per kg"
+          },
+          "imageUrl": {
+            "bsonType": "string",
+            "description": "Crop image URL"
+          },
+          "creator": {
+            "bsonType": "string",
+            "description": "Creator of the record"
+          },
+          "createdAt": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Creation timestamp"
+          },
+          "updatedAt": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Last update timestamp"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "validationLevel": "moderate",
+    "validationAction": "warn"
+  }
+}
