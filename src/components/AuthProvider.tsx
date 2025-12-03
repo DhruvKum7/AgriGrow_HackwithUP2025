@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAuth } from '../hooks/useAuth'
 import { useLanguage } from '../contexts/LanguageContext'
-import { User, LogOut, Shield } from 'lucide-react'
+import { User, LogOut } from 'lucide-react'
 import toast from 'react-hot-toast'
 
 interface AuthProviderProps {
@@ -10,7 +10,7 @@ interface AuthProviderProps {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const { user, isAuthenticated, loading, signIn, signOut } = useAuth()
-  const { language } = useLanguage() // removed unused `t`
+  const { language } = useLanguage()
 
   const handleLogin = async () => {
     try {
@@ -48,9 +48,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-blue-50 to-yellow-50">
         <div className="max-w-md w-full mx-4">
           <div className="bg-white rounded-2xl shadow-xl p-8 text-center">
-            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Shield className="w-10 h-10 text-green-600" />
-            </div>
+            {/* Removed logo section */}
 
             <h1 className="text-3xl font-bold text-gray-800 mb-4">
               {language === 'hi' ? 'एग्रीग्रो में आपका स्वागत है' : 'Welcome to AgriGrow'}

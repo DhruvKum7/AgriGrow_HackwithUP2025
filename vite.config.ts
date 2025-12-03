@@ -1,17 +1,9 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-
-// https://vite.dev/config/
-export default defineConfig({
-  plugins: [react()],
-})
-
-import type { UserConfig } from 'vite'
+import { defineConfig, loadEnv, type UserConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
-import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '')
   let build: UserConfig['build'], esbuild: UserConfig['esbuild'], define: UserConfig['define']
 
   if (mode === 'development') {
@@ -45,11 +37,10 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         '@': '/src',
-      }
+      },
     },
     optimizeDeps: {
       exclude: ['lucide-react'],
     },
   }
 })
-
